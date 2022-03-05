@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+         var jsonobj ="";
+        function init() {
+
+            let jsonString = '{"userId": 1, "id": 1, "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit", "body": "quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto"}';
+            jsonobj = JSON.parse(jsonString);
+            populateScrean(jsonobj);
+            addEventToClick();
+        }
+
+        function populateScrean(json) {
+            document.getElementById("useridspan").innerText = json.userId;
+            document.getElementById("idspan").innerText = json.id;
+            document.getElementById("titlespan").innerText = json.title;
+            document.getElementById("bodyspan").innerText = json.body;
+        }
+
+        function changeObjectDetails(){
+            jsonobj.title = "new title"
+            jsonobj.body = "new body"
+        }
+        function showNewJson(){
+            jsonString = JSON.stringify(jsonobj);
+            document.getElementById("jsonafterchanged").innerText = jsonString;
+           
+        }
+
+        function addEventToClick(){
+            let buttonelement = document.getElementById("btn");
+            buttonelement.addEventListener('click', e => {
+                changeObjectDetails();
+                showNewJson();
+            });
+        }
+    </script>
+</head>
+
+<body onload="init()">
+    <div>
+        User Id = <span id="useridspan"></span> <br><br>
+        Id = <span id="idspan"></span><br><br>
+        Title = <span id="titlespan"></span><br><br>
+        Body Id = <span id="bodyspan"></span><br><br>
+        <button id="btn">click</button>
+    </div>
+
+<div id="jsonafterchanged"></div>
+
+
+</body>
+
+</html>
